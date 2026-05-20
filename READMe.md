@@ -36,3 +36,23 @@ The above command creates a new jar file in build/libs folder
 java -jar build/libs/filename.jar
 ```
 The above command will execute your code
+
+As we have included okhttp dependency in our build.gradle to make http request
+using our plain java code. The below command wont work to build jar.
+```
+./gradlew jar
+```
+we need to add this line in plugin of build.gradle and use the below command 
+```
+plugins {
+    id 'java'
+    // Add the below line for building fat jar
+    id 'com.gradleup.shadow' version '9.3.0'
+}
+```
+```
+./gradlew shadowJar
+```
+Note : A fat JAR (also known as an Uber JAR) is a single, self-contained Java archive file 
+that includes not only your application's compiled code 
+but also all of its required third-party libraries and dependencies.
